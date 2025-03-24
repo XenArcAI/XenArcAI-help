@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XenArcAI Help</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-question-circle"></i> XenArcAI Help</h1>
+            <p class="header-subtitle">Powered by Hugging Face Inference API</p>
+        </header>
+
+        <section id="instructions" class="card">
+            <h2><i class="fas fa-info-circle"></i> Welcome to XenArcAI Help</h2>
+            <p>To get started, please validate your Hugging Face API token. Once validated, you can select an AI model and begin interacting.</p>
+            <ol>
+                <li><strong>Enter your Hugging Face API token</strong> below.</li>
+                <li><strong>Validate your token.</strong></li>
+                <li>A popup will appear to <strong>select an AI Model</strong>.</li>
+                <li><strong>Enter your prompt</strong> and click "Query Model".</li>
+                <li><strong>Copy code</strong> directly from the response canvas.</li>
+            </ol>
+            <p class="note"><strong>Note:</strong> Your Hugging Face token is used solely for API requests and is not stored or shared by this website.</p>
+        </section>
+
+        <section id="token-section" class="card">
+            <h2><i class="fas fa-key"></i> Hugging Face Token</h2>
+            <p>Don't have a token? <a href="https://huggingface.co/settings/tokens" target="_blank" class="token-link">Create one here</a>.</p>
+            <div class="input-group">
+                <input type="password" id="hf-token" placeholder="Enter your Hugging Face API Token">
+                <button id="validate-token-btn" class="primary-btn"><i class="fas fa-check-circle"></i> Validate Token</button>
+            </div>
+            <div id="token-alert" class="alert"></div>
+        </section>
+
+        <section id="interaction-section" class="card" style="display: none;">
+            <h2><i class="fas fa-comments"></i> Model Interaction</h2>
+            <div id="selected-model-info">
+                <p>Selected Model: <span id="selected-model-name"></span></p>
+            </div>
+            <div class="input-group">
+                <textarea id="prompt-input" placeholder="How can XenArcAI Help you today?"></textarea>
+                <button id="query-model-btn" class="primary-btn"><i class="fas fa-rocket"></i> Query Model</button>
+            </div>
+            <div id="interaction-loading" class="loading-spinner"></div>
+            <div id="interaction-alert" class="alert"></div>
+            <div id="response-area" class="response-box">
+                <div class="code-canvas">
+                    <pre id="ai-response"></pre>
+                </div>
+                <div class="input-group">
+                    <button id="copy-response-btn" class="copy-btn" style="position: static; display: none;"><i class="fas fa-copy"></i> Copy Response</button>
+                    <button id="clear-response-btn" class="accent-btn" style="display: none;"><i class="fas fa-trash"></i> Clear Response</button>
+                </div>
+            </div>
+            <div class="history-section">
+                <h3>Interaction History</h3>
+                <div id="interaction-history"></div>
+            </div>
+        </section>
+
+        <div id="model-popup" class="modal">
+            <div class="modal-content card">
+                <span class="close-button">×</span>
+                <h2><i class="fas fa-wand-sparkles"></i> Select AI Model</h2>
+                <div class="input-group">
+                    <input type="text" id="popup-model-search" placeholder="Search models...">
+                    <select id="popup-model-category" title="Select Model Category">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+                <div id="popup-model-loading" class="loading-spinner"></div>
+                <div id="popup-model-alert" class="alert"></div>
+                <div id="popup-model-list" class="model-grid"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Powered by XenArcAI <i class="fas fa-brain"></i></p>
+        </footer>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

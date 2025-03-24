@@ -1,0 +1,482 @@
+/* styles.css */
+
+/* Existing styles (unchanged) */
+:root {
+    --bg-color: rgb(17, 17, 27);
+    --bg-gradient-start: rgba(25, 25, 40, 0.8);
+    --bg-gradient-end: rgba(17, 17, 27, 0.8);
+    --primary-color: rgb(100, 180, 250); /* Updated Primary Color */
+    --accent-color: rgb(150, 120, 250); /* Updated Accent Color */
+    --text-color: #f0f0f0; /* Slightly lighter text */
+    --card-bg: rgb(30, 30, 45); /* Slightly lighter card background */
+    --input-bg: rgb(40, 40, 60); /* Slightly lighter input background */
+    --input-text-color: var(--text-color);
+    --alert-success: rgb(50, 150, 100);
+    --alert-error: rgb(230, 50, 70);
+    --code-canvas-bg: rgb(50, 50, 70); /* Slightly lighter code canvas */
+    --code-text-color: #f8f8f2;
+    --code-font-family: 'Fira Code', monospace;
+    --modal-overlay-bg: rgba(0, 0, 0, 0.5); /* Modal overlay background */
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom right, var(--bg-gradient-start), var(--bg-gradient-end));
+    background-blend-mode: overlay;
+    overflow-x: hidden;
+    animation: gradientBackground 15s ease infinite;
+}
+
+@keyframes gradientBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px;
+    padding: 30px; /* Increased container padding */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px; /* Increased header margin */
+}
+
+header h1 {
+    font-size: 3.5em; /* Larger title */
+    margin: 0;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color); /* Stronger shadow */
+    letter-spacing: -1.5px; /* Tighter letter spacing */
+}
+
+.header-subtitle {
+    color: #bbb; /* Subtitle color */
+    font-style: italic;
+    margin-top: 10px;
+    font-size: 1.2em; /* Larger subtitle */
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 35px; /* Increased card padding */
+    margin-bottom: 30px; /* Increased card margin */
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Deeper shadow */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* More lift on hover */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6); /* Enhanced hover shadow */
+}
+
+.card h2 {
+    margin-top: 0;
+    color: var(--accent-color);
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 15px;
+    margin-bottom: 30px; /* Increased heading margin */
+    display: flex;
+    align-items: center;
+    gap: 15px; /* More gap for icon */
+    font-size: 2.2em; /* Larger section headings */
+}
+
+.card p, .card ol, .card li {
+    color: #ddd; /* Lighter body text */
+    line-height: 1.8;
+    font-size: 1.1em; /* Larger body text */
+}
+
+.card ol {
+    padding-left: 35px; /* Increased list padding */
+}
+
+.card .note {
+    font-size: 1.05em; /* Slightly larger note font */
+    color: #aaa;
+    margin-top: 25px; /* Increased note margin */
+    font-style: italic;
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 25px;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.input-group input[type="password"],
+.input-group input[type="text"],
+.input-group textarea,
+.input-group select {
+    flex-grow: 1;
+    padding: 15px;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    background-color: var(--input-bg);
+    color: var(--input-text-color);
+    font-size: 1.15em; /* Larger input font */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-group input[type="password"]:focus,
+.input-group input[type="text"]:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 12px var(--accent-color); /* Enhanced focus shadow */
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.primary-btn, .accent-btn, .copy-btn, .close-button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.15em; /* Larger button font */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.primary-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+.accent-btn, .copy-btn {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+}
+
+.primary-btn:hover, .accent-btn:hover, .copy-btn:hover, .close-button:hover {
+    transform: scale(1.07);
+    opacity: 0.9;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.3s ease-out;
+    transform: translateY(-10px);
+    font-size: 1.1em; /* Larger alert text */
+}
+
+.alert.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.alert.success {
+    background-color: rgba(var(--alert-success), 0.9);
+    color: var(--text-color);
+}
+
+.alert.error {
+    background-color: rgba(var(--alert-error), 0.9);
+    color: var(--text-color);
+}
+
+/* Interaction Area Styles */
+#interaction-section.card {
+    max-width: 900px; /* Adjusted max-width for interaction card */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.response-box {
+    background-color: var(--input-bg);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    overflow-x: auto;
+    position: relative;
+}
+
+.code-canvas {
+    background-color: var(--code-canvas-bg);
+    border-radius: 10px;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.response-box pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    color: var(--code-text-color);
+    font-size: 1.1em; /* Larger code text */
+    font-family: var(--code-font-family);
+}
+
+#copy-response-btn.copy-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    box-shadow: none;
+    opacity: 0.8;
+}
+
+#copy-response-btn.copy-btn:hover {
+    opacity: 1;
+    transform: scale(1.03);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.loading-spinner {
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid var(--accent-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 25px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+footer {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid var(--card-bg);
+    opacity: 0.7;
+    font-size: 1em;
+    margin-top: 35px;
+    width: 100%;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: var(--modal-overlay-bg); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 30px;
+    border: 1px solid #888;
+    border-radius: 15px;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 800px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    position: relative; /* For close button positioning */
+}
+
+.modal .card {
+    margin-bottom: 0; /* Remove card margin inside modal */
+}
+
+.modal .card h2 {
+    margin-bottom: 20px; /* Adjust heading margin in modal */
+}
+
+.close-button {
+    color: var(--text-color);
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2.5em;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.7;
+    text-shadow: 0 0 3px var(--text-color);
+    box-shadow: none; /* Remove button shadow */
+    padding: 0; /* Reset padding */
+}
+
+.close-button:hover {
+    opacity: 1;
+    transform: none; /* Reset hover transform */
+    box-shadow: none; /* Reset hover shadow */
+}
+
+/* Responsive Design - Adjusted Breakpoint */
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+        width: 95%;
+        max-width: 960px;
+    }
+
+    header h1 {
+        font-size: 2.8em; /* Slightly smaller title on smaller screens */
+    }
+    .card h2 {
+        font-size: 2em; /* Smaller headings */
+    }
+
+    .modal-content {
+        margin-top: 10%; /* Adjust modal margin on smaller screens */
+        padding: 25px; /* Slightly less padding in modal */
+    }
+    .close-button {
+        font-size: 2em; /* Smaller close button on smaller screens */
+        top: 5px; /* Adjust close button position */
+        right: 10px;
+    }
+
+    #interaction-section.card {
+        max-width: 100%; /* Interaction card takes full width on smaller screens */
+    }
+
+    .input-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .input-group button {
+        width: 100%;
+    }
+
+    .response-box {
+        padding: 20px; /* Less padding in response box on smaller screens */
+    }
+
+    .code-canvas {
+        padding: 15px; /* Less padding in code canvas */
+    }
+
+    #copy-response-btn.copy-btn {
+        top: 15px;
+        right: 15px;
+        padding: 10px 15px;
+        font-size: 0.95em;
+    }
+}
+
+/* New Styles for Added Features */
+.model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.model-card {
+    background-color: var(--input-bg);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.model-card:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: var(--accent-color);
+}
+
+.model-card.selected {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-color);
+}
+
+.model-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.2em;
+    color: var(--primary-color);
+}
+
+.model-card p {
+    margin: 5px 0;
+    font-size: 0.95em;
+    color: #ddd;
+}
+
+.model-details {
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+.select-model-btn {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.history-section {
+    margin-top: 30px;
+    border-top: 1px solid var(--card-bg);
+    padding-top: 20px;
+}
+
+.history-section h3 {
+    margin-top: 0;
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    font-size: 1.5em;
+}
+
+.history-item {
+    background-color: var(--input-bg);
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.history-item h4 {
+    margin: 0 0 10px;
+    font-size: 1.1em;
+    color: var(--primary-color);
+}
+
+.history-item pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    color: var(--code-text-color);
+    font-family: var(--code-font-family);
+    font-size: 0.95em;
+}
+
+.token-link {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.token-link:hover {
+    text-decoration: underline;
+    color: var(--accent-color);
+}

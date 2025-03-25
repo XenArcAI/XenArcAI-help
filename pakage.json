@@ -1,0 +1,13 @@
+{
+  "name": "xenarcai-help-interface",
+  "version": "1.0.0",
+  "description": "A simple web interface for interacting with AI models using the Hugging Face Inference API.",
+  "scripts": {
+    "start": "serve ."
+  },
+  "author": "Your Name or XenArcAI",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}
